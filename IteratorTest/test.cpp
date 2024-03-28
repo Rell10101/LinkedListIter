@@ -24,6 +24,7 @@ TEST(TestListIterator, TestBegin) {
 	EXPECT_EQ(*iter, 2);
 }
 
+//тестирование метода возвращающего размер списка
 TEST(TestListIterator, TestListSize) {
 
 	LinkedList<int> l;
