@@ -50,6 +50,8 @@ public:
     bool searchNode(T& data) const;
     // вывод списка в консоль
     void printList() const;
+    // метод возращающий размер списка
+    int ListSize();
 
     /*
     * Для бинарных деревьев, хешированных таблиц и словарей процесс прохождения списка более сложен.
@@ -74,13 +76,13 @@ public:
         // операторы сравнения
         // равенство
         bool operator==(const AbstractIterator<T>& o) const override {
-            // dynamic_cast преобразует операнд o в объект типа const LinkedListIterator<T>&
+            // dynamic_cast преобразует операнд o в объект типа LinkedListIterator
             return current == dynamic_cast<const LinkedListIterator<T>&>(o).current;
         }
 
         // неравенство
         bool operator!=(const AbstractIterator<T>& o) const override {
-            // dynamic_cast преобразует операнд o в объект типа const LinkedListIterator<T>&
+            // dynamic_cast преобразует операнд o в объект типа LinkedListIterator
             return !(current == dynamic_cast<const LinkedListIterator<T>&>(o).current);
         }
 
@@ -193,3 +195,14 @@ void LinkedList<T>::printList() const {
     std::cout << std::endl;
 }
 
+// возвращает размер списка
+template<typename T>
+int LinkedList<T>::ListSize() {
+    Node<T>* current = head;
+    int n = 0;
+    while (current != nullptr) {
+        n++;
+        current = current->next;
+    }
+    return n;
+}
